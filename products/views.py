@@ -138,7 +138,7 @@ def prod_list(request):
 
     if request.GET.get("query") != None:
         main_q = Q(name__icontains=request.GET.get("query")) | Q(bio__icontains=request.GET.get("query")) 
-        search_data = Product_Model.objects.filter(main_q,count>=1)
+        search_data = Product_Model.objects.filter(main_q)
         return render(request, "products.html", {"data": search_data, "ft_prd":ft_id,"wish_prd":wish_id})
 
     x = Product_Model.objects.all().order_by("-created")

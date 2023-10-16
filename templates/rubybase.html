@@ -94,7 +94,9 @@
             <div class="col-6 col-lg-2 m-auto">
                 <div class="header-right-meta text-right">
                     <ul>
+                        {% if user.is_authenticated %}
 
+                        
                         <form method="post" action="{% url 'account_logout' %}">
                             {% csrf_token %}
                             {% if redirect_field_value %}
@@ -103,12 +105,9 @@
                             <div class="container col-md-5 text-center">
                              
                             <button class="btn btn-dark p-3" type="submit"><i class="fa fa-sign-out"></i> {% trans 'Logout' %}</button>
-
-
-                         
-                            
                           </div>
                           </form>
+                        {% endif %}
 
                        
                       
