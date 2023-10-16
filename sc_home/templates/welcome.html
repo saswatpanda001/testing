@@ -1,0 +1,424 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <link rel="icon" href="{% static '/mainpage/images/favicon.png' %}" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Xtraas</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static '/mainpage/css/bootstrap.css' %}"/>
+  <!-- font awesome style -->
+  <link href="{% static '/mainpage/css/font-awesome.min.css' %}" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="{% static '/mainpage/css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static '/mainpage/css/responsive.css' %}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+  <!-- header section strats -->
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="index.html">
+          <span>
+            Xtraas
+          </span>
+        </a>
+        <div class="" id="">
+
+          <div class="custom_menu-btn">
+            <button onclick="openNav()">
+              <span class="s-1"> </span>
+              <span class="s-2"> </span>
+              <span class="s-3"> </span>
+            </button>
+            <div id="myNav" class="overlay">
+              <div class="overlay-content">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="shop.html">Shop</a>
+                <a href="blog.html">Blog</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- end header section -->
+
+  <!-- slider section -->
+  <section class="slider_section position-relative">
+    <div class="slider_bg_box">
+      <img src="{% static '/mainpage/images/slider-bg.jpg' %}" alt="" >
+    </div>
+    <div class="slider_bg"></div>
+    <div class="container">
+      <div class="col-md-9 col-lg-8">
+        <div class="detail-box">
+          <h1>
+            Best Jewellery
+            <br> Collection
+          </h1>
+          <p>
+            It is a long established fact that a reader will be distracted by the readable content of a page when
+            looking at its layout. The point of using Lorem
+          </p>
+          <div>
+            <a  href="{% url 'products:all_pr' %}" class="slider-link">
+              Shop Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end slider section -->
+
+  <!-- shop section -->
+
+  <section class="shop_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Featured Products
+        </h2>
+      </div>
+      <div class="row">
+        
+       {% for each in data%} 
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="box">
+            <a >
+              <div class="img-box">
+                <img src={{each.product.image.url}} alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  {{each.name}}
+                </h6>
+                <h6>
+                  Price
+                  <span>
+                    Rs. {{each.price}}
+                  </span>
+                </h6>
+              </div>
+              <div class="new">
+                <span>
+                  New
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+       
+    
+      </div>
+      <div class="btn-box">
+        <a href="{% url 'products:all_pr' %}">
+          View All Products
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- end shop section -->
+
+  <!-- about section -->
+
+  <section class="about_section  ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="img-box">
+            <img src="{% static '/mainpage/images/about-img.jpg' %}" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                About Us
+              </h2>
+            </div>
+            <p>
+              At our jewelry shop, we are dedicated to turning moments into memories. With a commitment to craftsmanship and elegance, our curated selection of fine jewelry reflects your unique style. Explore, celebrate, and cherish with us. 
+            </p>
+         
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+  <!-- offer section -->
+
+  <section class="offer_section layout_padding">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-7 px-0">
+          <div class="box offer-box1">
+            <img src="{% static '/mainpage/images/o1.jpg' %}" alt="">
+            <div class="detail-box">
+              <h2>
+                Upto 15% Off
+              </h2>
+              <a href="{% url 'products:all_pr' %}">
+                Shop Now
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 px-0">
+          <div class="box offer-box2">
+            <img src="{% static '/mainpage/images/o2.jpg' %}" alt="">
+            <div class="detail-box">
+              <h2>
+                Upto 10% Off
+              </h2>
+              <a href="{% url 'products:all_pr' %}">
+                Shop Now
+              </a>
+            </div>
+          </div>
+          <div class="box offer-box3">
+            <img src="{% static '/mainpage/images/o3.jpg' %}" alt="">
+            <div class="detail-box">
+              <h2>
+                Upto 20% Off
+              </h2>
+              <a href="{% url 'products:all_pr' %}">
+                Shop Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end offer section -->
+
+  <!-- blog section -->
+
+  <section class="blog_section ">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Latest From Blog
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box">
+            <div class="img-box">
+              <img src="{% static '/mainpage/images/b1.png' %}" alt="">
+              
+            </div>
+            <div class="detail-box">
+              <h5>
+                Unmatched Quality
+              </h5>
+              <p>
+                Our jewelry is crafted using the finest materials, sterling silver, and ethically sourced gemstones. We take pride in the quality and purity of our materials, ensuring a lasting, radiant shine
+              </p>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box">
+            <div class="img-box">
+              <img src="{% static '/mainpage/images/b2.png' %}" alt="">
+              
+            </div>
+            <div class="detail-box">
+              <h5>
+                Exquisite Designs
+              </h5>
+              <p>
+                Discover a curated selection of designs that blend contemporary trends with timeless classics. Whether you're seeking a minimalist piece for everyday wear or a show-stopping statement for special occasions, our collection has it all.
+              </p>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end blog section -->
+
+  <!-- client section -->
+
+  <section class="client_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Testimonial
+        </h2>
+      </div>
+      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row">
+              <div class="col-md-11 col-lg-10 mx-auto">
+                <div class="box">
+                  <div class="img-box">
+                    <img src="{% static '/mainpage/images/client.png' %}" alt="" />
+                  </div>
+                  <div class="detail-box">
+                    <div class="name">
+                      <h6>
+                        Akshita Sharma
+                      </h6>
+                    </div>
+                    <p>
+                      
+These Jewelry products epitomizes classic elegance. Its versatility and affordability make it a go-to choice. The radiant shine and intricate detailing create a timeless allure. A must-have for those who appreciate understated beauty.
+                    </p>
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="info_section layout_padding2">
+    <div class="container">
+      <div class="row info_form_social_row">
+        <div class="col-md-8 col-lg-9">
+          <div class="info_form">
+            
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3">
+
+          <div class="social_box">
+            <a >
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a >
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a >
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row info_main_row">
+        <div class="col-md-6 col-lg-3">
+          <div class="info_links">
+            <h4>
+              Menu
+            </h4>
+            <div class="info_links_menu">
+              <a href="{% url 'home:welcome'%}">Home</a>
+              <a href="{% url 'products:all_pr'%}">Products</a>
+              <a href="{% url 'home:contact' %}">Contact US</a>
+          
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="info_insta">
+            <h4>
+              Instagram
+            </h4>
+            <div class="insta_box">
+            
+              <p>
+                @xtraas
+              </p>
+            </div>
+         
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="info_detail">
+            <h4>
+              About Us
+            </h4>
+            <p class="mb-0">
+              We are your trusted destination for exquisite jewelry. With a passion for craftsmanship and quality, we offer a curated collection of timeless pieces that reflect elegance, personal style, and lasting memories.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <h4>
+            Contact Us
+          </h4>
+          <div class="info_contact">
+            <a >
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span>
+                Chandigarh University
+              </span>
+            </a>
+            <a >
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Call 9369510158
+              </span>
+            </a>
+            <a >
+              <i class="fa fa-envelope"></i>
+              <span>
+                aaravsingh1593@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info_section -->
+
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="https://html.design/">Free Html Templates</a>
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+
+  <!-- jQery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+
+</body>
+
+</html>

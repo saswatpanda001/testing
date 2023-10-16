@@ -1,0 +1,262 @@
+
+{% extends 'rubybase.html'%}
+{% load static %}
+{% block content %}
+
+<!--== Header Area End ==-->
+
+<!--== Search Box Area Start ==-->
+<div class="body-popup-modal-area">
+    <span class="modal-close"><img src="/static/assets/img/cancel.png" alt="Close" class="img-fluid"/></span>
+    <div class="modal-container d-flex">
+        <div class="search-box-area">
+            <div class="search-box-form">
+                <form action="#" method="post">
+                    <input type="search" placeholder="type keyword and hit enter"/>
+                    <button class="btn" type="button"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--== Search Box Area End ==-->
+
+<!--== Page Title Area Start ==-->
+<div id="page-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="page-title-content">
+                    <ul class="breadcrumb">
+                       <h1>Product Details</h1>
+                       
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--== Page Title Area End ==-->
+
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper" class="p-9">
+    <div class="ruby-container">
+        <div class="row">
+            <!-- Single Product Page Content Start -->
+            <div class="col-lg-12">
+                <div class="single-product-page-content">
+                    <div class="row">
+                        <!-- Product Thumbnail Start -->
+                        <div class="col-lg-5">
+                            <div class="product-thumbnail-wrap">
+                                <div class="product-thumb-carousel owl-carousel">
+                                    <div class="single-thumb-item">
+                                        <a ><img class="img-fluid"
+                                          src="{{data.image.url}}"
+                                                                           alt="Product"/></a>
+                                    </div>
+
+                                    <div class="single-thumb-item">
+                                        <a ><img class="img-fluid"
+                                          src="{{data.image1.url}}"
+                                                                           alt="Product"/></a>
+                                    </div>
+
+                                    <div class="single-thumb-item">
+                                        <a ><img class="img-fluid"
+                                          src="{{data.image2.url}}"
+                                                                           alt="Product"/></a>
+                                    </div>
+                                    
+                                    {% if data.image3 %}
+                                    <div class="single-thumb-item">
+                                            <a ><img class="img-fluid"
+                                          src="{{data.image3.url}}"
+                                                                           alt="Product"/></a>
+                                    </div>
+                                    {% endif %}
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product Thumbnail End -->
+
+                        <!-- Product Details Start -->
+                        <div class="col-lg-7 mt-5 mt-lg-0">
+                            <div class="product-details">
+                                <h2><a >{{data.name}}</a></h2>
+
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+
+                                <span class="price">Rs. {{data.price}}</span>
+
+                                <div class="product-info-stock-sku">
+                                    <span class="product-stock-status">In Stock</span>
+                                    <!-- <span class="product-sku-status ml-5"><strong>SKU</strong> MH03</span> -->
+                                </div>
+
+                                <p class="products-desc">{{data.bio}}</p>
+                                
+                                
+
+                                <form method="POST" action="">{% csrf_token %}
+                                <div class="product-quantity mt-5 align-items-center">
+                                    <div class="quantity-field mb-3">
+                                        <label for="qty">Qty</label>
+                                        <input type="number" name="quantity"  id="qty" min="1" max="100" value="1"/>
+                                    </div>
+
+                                    <button   type="submit" name="cart_button" class="btn btn-add-to-cart mt-3 bg-dark text-white">Add to Cart</button>
+                                    
+                                
+                                
+                                </div>
+                              </form>
+
+                              <form method="POST" action="">{% csrf_token %}                      
+                                <button type="submit" name="wishlist_button" value={{data.id}} class="btn btn-add-to-cart mt-3 bg-primary text-white">Add to Wishlist</button>
+                              </form>    
+
+                              
+                        
+
+
+                                
+                               
+                                
+
+
+
+
+                                <!-- <div class="product-btn-group d-none d-sm-block">
+                                    <a  class="btn btn-add-to-cart btn-whislist">+ Add to
+                                        Wishlist</a>
+                                    <a  class="btn btn-add-to-cart btn-whislist">+ Add to
+                                        Compare</a>
+                                    <a  class="btn btn-add-to-cart btn-compare">Email</a>
+                                </div> -->
+                            </div>
+                        </div>
+                        <!-- Product Details End -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Product Full Description Start -->
+                            <div class="product-full-info-reviews">
+                                <!-- Single Product tab Menu -->
+                                <nav class="nav" id="nav-tab">
+                                    <a class="active" id="description-tab" data-toggle="tab" href="#description">Description</a>
+                                    <a id="reviews-tab" data-toggle="tab" href="#reviews">Reviews</a>
+                                </nav>
+                                <!-- Single Product tab Menu -->
+
+                                <!-- Single Product tab Content -->
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="description">
+                                        <p>Stay comfortable and stay in the race no matter what the weather's up to. The
+                                            Bruno Compete Hoodie's water-repellent exterior shields you from the
+                                            elements, while advanced fabric technology inside wicks moisture to keep you
+                                            dry.Stay comfortable and stay in the race no matter what the weather's up
+                                            to. The Bruno Compete Hoodie's water-repellent exterior shields you from the
+                                            elements, while advanced fabric technology inside wicks moisture to keep you
+                                            dry.Stay comfortable and stay in the race no matter what the weather's up
+                                            to. The Bruno Compete Hoodie's water-repellent exterior shields you from the
+                                            elements, while advanced fabric technology inside wicks moisture to keep you
+                                            dry.</p>
+
+                                        <ul>
+                                            <li>Adipisicing elitEnim, laborum.</li>
+                                            <li>Lorem ipsum dolor sit</li>
+                                            <li>Dolorem molestiae quod voluptatem! Sint.</li>
+                                            <li>Iure obcaecati odio pariatur quae saepe!</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="reviews">
+                                        <div class="row">
+                                            <div class="col-lg-7">
+                                                <div class="product-ratting-wrap">
+                                                    <div class="pro-avg-ratting">
+                                                       
+                                                        <span><b> Comments</b></span>
+                                                    </div>
+                                                   
+                                                    <div class="rattings-wrapper">
+
+                                                      {% for each in product_comm %}
+                                                      
+
+                                                        <div class="sin-rattings">
+                                                            <div class="ratting-author">
+
+                                                                <div class="d-flex gap-3">
+                                                                <p class="mr-2"><b>{{each.author}} </b></p>
+                                                                <p class="ml-2 ">{{each.created}}</p>
+                                                                </div>
+                                                               
+                                                                <p class="text-dark">{{each.body}}</p>
+                                                                <hr/>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                        
+
+                                                      
+                                                      {% endfor %}
+
+                                                    </div>
+                                                    <div class="ratting-form-wrapper fix">
+                                                        <h3>Add your Comments</h3>
+
+                                                        <form action="" method="POST">{% csrf_token %}
+                                                            <div class="ratting-form row">
+                                                                <div class="col-12 mb-4">
+                                                                        <!-- <h5>Rating:</h5>
+                                                                        <div class="ratting-star fix">
+                                                                            <i class="fa fa-star-o"></i>
+                                                                            <i class="fa fa-star-o"></i>
+                                                                            <i class="fa fa-star-o"></i>
+                                                                            <i class="fa fa-star-o"></i>
+                                                                            <i class="fa fa-star-o"></i>
+                                                                        </div> -->
+                                                                </div>
+                                                              
+                                                               
+                                                                <div class="col-12 mb-4">
+                                                                    <label for="your-review">Your Review:</label>
+                                                                    <textarea name="body"  id="your-review"
+                                                                              placeholder="Write a review"></textarea>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <input type="submit" class="bg-dark text-white" name="comment_button" value="add review">
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Single Product tab Content -->
+                            </div>
+                            <!-- Product Full Description End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Product Page Content End -->
+        </div>
+    </div>
+</div>
+<!--== Page Content Wrapper End ==-->
+
+{% endblock %}

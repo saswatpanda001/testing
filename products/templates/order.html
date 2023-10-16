@@ -1,0 +1,50 @@
+{% extends "rubybase.html" %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="body-popup-modal-area">
+    <span class="modal-close"><img src="assets/img/cancel.png" alt="Close" class="img-fluid"/></span>
+    <div class="modal-container d-flex">
+        <div class="search-box-area">
+            <div class="search-box-form">
+                <form action="#" method="post">
+                    <input type="search" placeholder="type keyword and hit enter"/>
+                    <button class="btn" type="button"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!--== Search Box Area End ==-->
+  
+  <!--== Page Title Area Start ==-->
+  <div id="page-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="page-title-content">
+                    <h1>Order Confirmation</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+<div class="flex flex-col justify-center items-center flex-1 h-full w-full ">
+<div class="text-center img-responsive ">
+   <img src="{% static 'confirm.png' %}" class="img-fluid img-responsive" height="400px" width="400px">
+    <h3 class="display-4 mt-2">Your order has been successfully placed</h3>
+
+
+    <a class="nav-link text-white bg-dark my-3 p-4 text-2xl" href="{% url 'products:all_pr' %}">Explore more products</a>
+    <a class="nav-link text-white bg-dark my-3 p-4 text-2xl" href="/products/orders">See your orders</a>
+</div>
+
+
+</div>
+
+{% endblock %}

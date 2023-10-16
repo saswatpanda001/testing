@@ -1,0 +1,4 @@
+
+bubble sort: for every A[i]>A[i+1] swap
+selection sort: for each iteration min elem is placed on front of the list
+

@@ -1,0 +1,90 @@
+{% extends "offnav.html" %}
+
+{% load static %}
+{% block content %}
+
+
+
+<link rel="stylesheet" href="{% static 'card.css' %}" />
+
+
+<div class="body-popup-modal-area">
+  <span class="modal-close"><img src="assets/img/cancel.png" alt="Close" class="img-fluid"/></span>
+  <div class="modal-container d-flex">
+      <div class="search-box-area">
+          <div class="search-box-form">
+              <form action="#" method="post">
+                  <input type="search" placeholder="type keyword and hit enter"/>
+                  <button class="btn" type="button"><i class="fa fa-search"></i></button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!--== Search Box Area End ==-->
+
+<!--== Page Title Area Start ==-->
+<div id="page-title-area">
+  <div class="container">
+      <div class="row">
+          <div class="col-12 text-center">
+              <div class="page-title-content">
+                  <h1>Shop</h1>
+                  <ul class="breadcrumb">
+                      <li><a href="index.html">Home</a></li>
+                      <li><a href="index.html" class="active">Shop</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="row row-cols-1 row-cols-md-4 g-4 ml-3">
+{% for each in data %}
+<div class="conatainer ">
+<div class="card  mt-5 mb-3" style="width:280px;">
+  <a href="/products/products/{{each.pk}}">
+  <img src="{{ each.image.url }}" class="card-img-top">
+  </a>
+  <div class="card-body">
+    
+    <h5 class="diaplay-4 text-dark">{{ each.name }}</h5>
+   
+    
+    <div class="row">
+      <div class="col-md-8"><p class="lead">Rs:{{ each.price}}</p></div>
+  
+      <div class="col-md-4">
+      
+        <a href="{% url 'products:update' each.pk %}"><span class="material-icons" style="color:black;" >
+          edit
+          </span></a>
+        <a href="{% url 'products:delete' each.pk %}"><span class="material-icons" style="color:black;">
+          delete
+          </span></a>
+      
+      </div>
+      </div>
+
+
+   
+
+    
+
+    
+    
+   
+  </div>
+</div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,109 @@
+
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ultras - Clothing Store eCommerce Store HTML Website Template</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="{% static '/products/css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/products/icomoon/icomoon.css' %}">
+    <link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static '/products/css/vendor.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/products/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- script
+    ================================================== -->
+    <script src="{% static '/products/js/modernizr.js' %}"></script>
+   </head>
+  <body>
+
+    
+    <header id="header">
+      <div id="header-wrap">
+       
+        <nav class="primary-nav padding-small">
+          <div class="container">
+            <div class="row d-flex align-items-center">
+              <div class="col-lg-2 col-md-2">
+                <div class="main-logo">
+               <a href="{% url 'products:all_pr' %}" >
+                    <img src="{% static '/products/images/main-logo.png' %}" alt="logo">
+                </a>
+
+              
+                </div>
+              </div>
+              <div class="col-lg-10 col-md-10">
+                <div class="navbar">
+
+                  <div id="main-nav" class="stellarnav d-flex justify-content-end right">
+                    <ul class="menu-list">
+                      
+                      {% if user.is_authenticated %}
+                      <li class="menu-item has-sub">
+                        <a href="{% url 'products:all_pr' %}" class="item-anchor d-flex align-item-center" data-effect="Home">Home</a>
+                      </li>
+
+                      <li><a href="{% url 'products:cart' %}" class="item-anchor" data-effect="About">Cart</a></li>
+
+                      <li class="menu-item has-sub">
+                        <a href="{% url 'products:orders' %}" class="item-anchor d-flex align-item-center" data-effect="Home">Orders</a>              
+                      </li>
+                      
+                      {% if request.user.is_staff %}
+                      <li class="menu-item has-sub">
+                        <a href="{% url 'products:sales' %}" class="item-anchor d-flex align-item-center" data-effect="Home">Sales</a>              
+                      </li>
+                      {% endif %}
+
+
+
+      
+                      
+                      <li class="menu-item has-sub">
+                      <form method="post" action="{% url 'account_logout' %}">
+                        {% csrf_token %}
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                        {% endif %}
+                        <div class="container col-md-5 text-center">
+                         
+                        <button class="btn" type="submit">{% trans 'Logout' %}</button>
+                      </div>
+                      </form>
+                    </li>
+                      
+                      
+                      {% endif %}
+
+
+
+
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+    {% block content %} 
+    
+    {% endblock %}
+    </div>
+
+  </body>
+</html>

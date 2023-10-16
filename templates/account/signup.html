@@ -1,0 +1,88 @@
+{% extends "rubybase.html" %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+
+<!--== Search Box Area Start ==-->
+<div class="body-popup-modal-area">
+  <span class="modal-close"><img src="/static/assets/img/cancel.png" alt="Close" class="img-fluid"/></span>
+  <div class="modal-container d-flex">
+      <div class="search-box-area">
+          <div class="search-box-form">
+              <form action="#" method="post">
+                  <input type="search" placeholder="type keyword and hit enter"/>
+                  <button class="btn" type="button"><i class="fa fa-search"></i></button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!--== Search Box Area End ==-->
+
+<!--== Page Title Area Start ==-->
+<div id="page-title-area">
+  <div class="container">
+      <div class="row">
+          <div class="col-12 text-center">
+              <div class="page-title-content">
+                  <ul class="breadcrumb">
+                     <h1>Create your account</h1>
+                     
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper" class="p-9">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-7 m-auto">
+              <!-- Login & Register Content Start -->
+              <div class="login-register-wrapper">
+                  <!-- Login & Register tab Menu -->
+                  <nav class="nav login-reg-tab-menu">
+                      <a class="active" id="login-tab" data-toggle="tab" href="#login">Create your account</a>
+                    
+                  </nav>
+                  <!-- Login & Register tab Menu -->
+
+                  <div class="tab-content" id="login-reg-tabcontent">
+                      <div class="tab-pane fade show active" id="login" role="tabpanel">
+                          <div class="login-reg-form-wrap">
+                            <form class="signup text-dark" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                              
+                              {% csrf_token %}
+                              {{ form|crispy }}
+                              
+                              {% if redirect_field_value %}
+                              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                              {% endif %}
+                              <div class="d-grid gap-2 mt-4">
+                              <button type="submit" class="bg-dark text-white p-4">{% trans "Sign Up" %} &raquo;</button>
+                              <p class="text-dark mt-3">Already have an account <a href="/accounts/login" class="text-blue-500">click here</a> to login</p>
+                              </div>
+                            </form>
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Login & Register Content End -->
+          </div>
+      </div>
+  </div>
+</div>
+<!--== Page Content Wrapper End ==-->
+
+
+
+{% endblock %}

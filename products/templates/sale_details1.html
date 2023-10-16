@@ -1,0 +1,79 @@
+{% extends 'rubybase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="body-popup-modal-area">
+    <span class="modal-close"><img src="assets/img/cancel.png" alt="Close" class="img-fluid"/></span>
+    <div class="modal-container d-flex">
+        <div class="search-box-area">
+            <div class="search-box-form">
+                <form action="#" method="post">
+                    <input type="search" placeholder="type keyword and hit enter"/>
+                    <button class="btn" type="button"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!--== Search Box Area End ==-->
+  
+  <!--== Page Title Area Start ==-->
+  <div id="page-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="page-title-content">
+                    <h1>Shop</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+<div class="container mb-4">
+
+    {% if ord_table is None %}
+        <div class="container alert alert-danger mt-5 text-center col-md-6" role="alert">
+            No data to display
+        </div>
+       
+    {% else %}
+        <div class="container text-center mb-5">   
+
+            <table class="table container">
+                <thead>
+                  <tr>
+                    <th scope="col">Transaction Id</th>
+                    <th scope="col">Salesman</th>
+                    <th scope="col">NetPrice</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Status</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for each in ord_table %}
+                  <tr>
+                    <th scope="row"><a  href="{% url 'products:ord_details' each.transaction_id %}">{{each.transaction_id}}</a></th>
+                    <td>{{each.net_price}}</td>
+                    <td>{{each.time}}</td>
+                    <td>{{each.status}}</td>
+                    <td>{{each.number}}</td>
+                  </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+            <br>
+            <br>
+        </div> 
+    {% endif %}
+</div>
+
+
+
+{% endblock %}

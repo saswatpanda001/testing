@@ -1,0 +1,20 @@
+{% extends "offnav1.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<h3 class="display-3 mt-5 mb-5 text-center">Create a Product</h3>
+
+
+    <div class="container col-md-5 mt-5">
+
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            {{ form|crispy }}
+            <div class="d-grid gap-2 mt-4 mb-5">
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </div>               
+        </form>
+
+    </div>
+
+{% endblock %}

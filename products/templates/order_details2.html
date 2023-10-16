@@ -1,0 +1,190 @@
+{% extends "rubybase.html" %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<div class="body-popup-modal-area">
+  <span class="modal-close"><img src="assets/img/cancel.png" alt="Close" class="img-fluid"/></span>
+  <div class="modal-container d-flex">
+      <div class="search-box-area">
+          <div class="search-box-form">
+              <form action="#" method="post">
+                  <input type="search" placeholder="type keyword and hit enter"/>
+                  <button class="btn" type="button"><i class="fa fa-search"></i></button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!--== Search Box Area End ==-->
+
+<!--== Page Title Area Start ==-->
+<div id="page-title-area">
+  <div class="container">
+      <div class="row">
+          <div class="col-12 text-center">
+              <div class="page-title-content">
+                  <h1>Transaction Details</h1>
+                  <h3 class="text-white">{{data.transaction_id}}</h3>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper" class="p-9">
+  <div class="ruby-container">
+      <div class="row">
+          <!-- Sidebar Area Start -->
+          <div class="col-lg-3 mt-5 mt-lg-0">
+              <div id="sidebar-area-wrap">
+                  <!-- Single Sidebar Item Start -->
+                  <div class="single-sidebar-wrap">
+                   
+                      <div class="sidebar-body">
+                          <div class="shopping-option">
+                              
+                           
+<!-- 
+                              <div class="shopping-option-item">
+                                  <h4>MANUFACTURER</h4>
+                                  <ul class="sidebar-list">
+                                      <li><a href="#">Dolce (19)</a></li>
+                                      <li><a href="#">Gabbana (4)</a></li>
+                                      <li><a href="#">Nike (3)</a></li>
+                                      <li><a href="#">Nokia (5)</a></li>
+                                      <li><a href="#">Xiaomi (7)</a></li>
+                                      <li><a href="#">Other (33)</a></li>
+                                  </ul>
+                              </div> -->
+
+                             
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Single Sidebar Item End -->
+
+                  <!-- Single Sidebar Item Start -->
+                  <div class="single-sidebar-wrap">
+                      <h2 class="sidebar-title">Transaction Details</h2>
+                      <div class="sidebar-body">
+                          <div class="small-product-list">
+                           
+                              <p class="text-2xl"><b>ID:</b> {{data.transaction_id}}</p>
+                              <p class="text-2xl"><b>Total Price:</b>{{data.net_price}}</p>
+                              <p class="text-2xl"><b>Sold By: </b><a style="color: black;">{{data.salesman}}</a></p>
+                             
+                              <p class="text-2xl"><b>Date: </b>{{data.created}}</p>
+                              <p class="text-2xl"><b>Status: </b>{{data.status}}</p>
+                              <p class="text-2xl"><b>Name: </b>{{data.name}}</p>
+                              <p class="text-2xl"><b>Phone: </b>{{data.number}}</p>
+                              <p class="text-2xl"><b>Adress: </b>{{data.adress}}</p>
+                    
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Single Sidebar Item End -->
+
+                  <!-- Single Sidebar Item Start -->
+                  <div class="single-sidebar-wrap">
+                      <h2 class="sidebar-title">Most Featured Product</h2>
+                      <div class="sidebar-body">
+                          <div class="small-product-list">
+
+                            
+                                {% for each in fet_prd %}
+                            
+
+                                <div class="single-product-item">
+                                  <figure class="product-thumb">
+                                      <a href="{% url 'products:pr_details' each.id%}"><img class="mr-2 img-fluid" src={{each.product.image.url}}
+                                                       alt="Products"/></a>
+                                  </figure>
+                                  <div class="product-details">
+                                      <h3>{{each.product.name}}</h2>
+                                      <span class="price">Rs. {{each.product.price}}</span>
+                                       
+                                      
+                                      
+                                  </div>
+                              </div>
+                            {% endfor %}
+                             
+                          
+                            
+
+                              
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Single Sidebar Item End -->
+              </div>
+          </div>
+          <!-- Sidebar Area End -->
+
+          <!-- Shop Page Content Start -->
+          <div class="col-lg-9 order-first order-lg-last">
+              <div class="shop-page-content-wrap">
+                  
+
+                  <div class="shop-page-products-wrap">
+                      <div class="products-wrapper">
+                          <div class="row">
+
+                             {% for each in data.products.all %}
+
+                             <div class="col-lg-4 col-sm-6">
+                              <!-- Single Product Item -->
+                              <div class="single-product-item text-center">
+                                  <figure class="product-thumb">
+                                      <a ><img src={{each.image.url}}
+                                                                         alt="Products" class="img-fluid"></a>
+                                  </figure>
+
+                                  <div class="product-details">
+                                      <h2><a href="/products/products/{{each.pk}}"></a></h2>
+                                     
+                                      <span class="price">Quantity: {{each.quantity}}</span>
+                                      <span class="price">Total Price: {{each.net_price}}</span>
+                                     
+                                      <p class="products-desc">Ideal for cold-weathered training worked lorem
+                                          outdoors, the Chaz Hoodie promises superior warmth with every wear.
+                                          Thick material blocks out the wind as ribbed cuffs and bottom band seal
+                                          in body heat.</p>
+                                           
+                                 
+                                     
+                                  </div>
+
+                                  <div class="product-meta">
+                                    
+                                     
+                                  </div>
+                                  <span class="product-bedge"></span>
+                              </div>
+                              <!-- Single Product Item -->
+                          </div>
+
+                          {% endfor %}
+
+                          </div>
+                      </div>
+                  </div>
+
+               
+              </div>
+          </div>
+          <!-- Shop Page Content End -->
+      </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+
