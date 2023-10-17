@@ -124,6 +124,7 @@
 
                   <div class="shop-page-products-wrap">
                       <div class="products-wrapper">
+                        {% if data %}
                           <div class="row">
 
                              {% for each in data %}
@@ -173,6 +174,16 @@
 
                               {% endfor %}
                           </div>
+                          {% else %}
+                          <h1>There are no products in your wishlist</h1>
+                          <br>
+                          
+                          <div class="cart-update mr-4 mt-4">
+                            <a href="{% url 'products:all_pr' %}"><button   name="update_cart" class="btn-add-to-cart">Explore More Products</button></a>
+                        </div>
+                        
+                          {% endif %}
+
                       </div>
                   </div>
 

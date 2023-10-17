@@ -244,7 +244,10 @@ def cart_view(request):
             print(cart_dt.net_price,cart_dt.quantity)
             cart_dt.quantity = each[1]
             cart_dt.net_price = each[1]*cart_dt.name.price
-            cart_dt.save()
+            if cart_dt.quantity==0:
+                cart_dt.delete()
+            else:
+                cart_dt.save()
             print(cart_dt.net_price,cart_dt.quantity)
             
 
