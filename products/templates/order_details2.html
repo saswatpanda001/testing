@@ -98,11 +98,9 @@
 
                             
                                 {% for each in fet_prd %}
-                            
-
                                 <div class="single-product-item">
                                   <figure class="product-thumb">
-                                      <a href="{% url 'products:pr_details' each.id%}"><img class="mr-2 img-fluid" src={{each.product.image.url}}
+                                      <a href="{% url 'products:pr_details' each.product.id %}"><img class="mr-2 img-fluid" src={{each.product.image.url}}
                                                        alt="Products"/></a>
                                   </figure>
                                   <div class="product-details">
@@ -142,7 +140,7 @@
                               <!-- Single Product Item -->
                               <div class="single-product-item text-center">
                                   <figure class="product-thumb">
-                                      <a ><img src={{each.image.url}}
+                                      <a href="{% url 'products:pr_details' each.name.id %}"><img src={{each.image.url}}
                                                                          alt="Products" class="img-fluid"></a>
                                   </figure>
 

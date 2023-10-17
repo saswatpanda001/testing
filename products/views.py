@@ -227,6 +227,29 @@ def products_details(request, pk):
 def cart_view(request):
 
 
+    if request.method == "POST" and "update_cart" in request.POST:
+        data = request.POST
+        filter = []
+        for each in data:
+        
+            try:
+              
+                if int(each):
+                    filter.append([int(each),int(request.POST[each])])
+            except:
+                pass
+        for each in filter:
+            prd = Product_Model.objects.filter(id=each[0])[0]
+            cart_dt = cart_model.objects.filter(buyer=request.user,name=prd)[0]
+            print(cart_dt.net_price,cart_dt.quantity)
+            cart_dt.quantity = each[1]
+            cart_dt.net_price = each[1]*cart_dt.name.price
+            cart_dt.save()
+            print(cart_dt.net_price,cart_dt.quantity)
+
+            
+
+
     x = cart_model.objects.filter(buyer=request.user)
     y = len(x)
 
@@ -261,8 +284,10 @@ def cart_view(request):
         else:
             notifications = "Quantity cannot be 0"
 
+    
+    
+         
         
-
     
    
 
@@ -294,60 +319,7 @@ def cart_view(request):
     
 
 
-    if request.method == "POST" and "place_order" in request.POST:
-
-        salesman = []
-
-        for each in x:
-            if each.name.author not in salesman:
-                salesman.append(each.name.author)
-            ord_mod = order_model.objects.create(
-                quantity=each.quantity,
-                buyer=each.buyer,
-                seller=each.seller,
-                name=each.name,
-                image=each.image,
-                net_price=each.net_price,
-            )
-
-            ord_mod.save()
-
-        for i in salesman:
-            a = cart_model.objects.filter(seller=i)
-            b = order_model.objects.all().order_by('-id')[:y][::-1]
-            lii = []
-            for each in b:
-                if each.seller == i:
-                    lii.append(each)
-
-            print(b)
-            summ = 0
-            for each in a:
-                summ += each.net_price
-
-            sale = sales_list.objects.create(
-                costumer=request.user,
-                salesman=i,
-                net_price=0,
-
-            )
-            summ = 0
-            for each in a:
-                summ += each.net_price
-            for each in lii:
-                sale.products.add(each)
-
-            sale.net_price = sum_total
-            
-            sale.name = request.POST["buyer_name"]
-            sale.number = request.POST["buyer_phone"]
-            sale.adress = request.POST["buyer_adress"]
-            sale.save()
-            
-
-        cart_model.objects.filter(buyer=request.user).delete()
-
-        return redirect("products:confirm")
+    
 
     
        
@@ -433,3 +405,76 @@ def wishlist_data(request):
 
     x = wishlist.objects.filter(buyer=request.user)
     return render(request, "wishlist.html", {"data": x,"ft_prd":ft_prd})
+
+
+
+
+@login_required
+def confirm_orders(request):
+
+    x = cart_model.objects.filter(buyer=request.user)
+    y = len(x)
+
+    sum_total = 0
+    pr_collect = cart_model.objects.filter(buyer=request.user)
+    for each in pr_collect:
+        sum_total+=each.net_price
+
+
+
+    if request.method == "POST":
+
+        salesman = []
+
+        for each in x:
+            if each.name.author not in salesman:
+                salesman.append(each.name.author)
+            ord_mod = order_model.objects.create(
+                quantity=each.quantity,
+                buyer=each.buyer,
+                seller=each.seller,
+                name=each.name,
+                image=each.image,
+                net_price=each.net_price,
+            )
+
+            ord_mod.save()
+
+        for i in salesman:
+            a = cart_model.objects.filter(seller=i)
+            b = order_model.objects.all().order_by('-id')[:y][::-1]
+            lii = []
+            for each in b:
+                if each.seller == i:
+                    lii.append(each)
+
+            print(b)
+            summ = 0
+            for each in a:
+                summ += each.net_price
+
+            sale = sales_list.objects.create(
+                costumer=request.user,
+                salesman=i,
+                net_price=0,
+
+            )
+            summ = 0
+            for each in a:
+                summ += each.net_price
+            for each in lii:
+                sale.products.add(each)
+
+            sale.net_price = sum_total
+            
+            sale.name = request.POST["f_name"]+request.POST["l_name"]
+            sale.number = request.POST["phone"]
+            sale.adress = request.POST["adress"]
+            sale.save()
+            
+
+        cart_model.objects.filter(buyer=request.user).delete()
+
+        return redirect("products:confirm")
+
+    return render(request,"confirm_order.html",{"data": x, "sum": sum_total, "num_cart": y})

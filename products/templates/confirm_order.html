@@ -1,0 +1,202 @@
+
+{% extends 'rubybase.html'%}
+{% load static %}
+
+{% block content %}
+
+<div class="body-popup-modal-area">
+  <span class="modal-close"><img src="assets/img/cancel.png" alt="Close" class="img-fluid"/></span>
+  <div class="modal-container d-flex">
+      <div class="search-box-area">
+          <div class="search-box-form">
+              <form action="#" method="post">
+                  <input type="search" placeholder="type keyword and hit enter"/>
+                  <button class="btn" type="button"><i class="fa fa-search"></i></button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!--== Search Box Area End ==-->
+
+<!--== Page Title Area Start ==-->
+<div id="page-title-area">
+  <div class="container">
+      <div class="row">
+          <div class="col-12 text-center">
+              <div class="page-title-content">
+                  <h1>Checkout</h1>
+                
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!--== Page Title Area End ==-->
+
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper" class="p-9">
+  <div class="container">
+      <!--== Checkout Page Content Area ==-->
+      <div class="row">
+          <div class="col-12">
+              <!-- Checkout Login Coupon Accordion Start -->
+              <div class="checkoutaccordion" id="checkOutAccordion">
+                
+                  <div class="card">
+                      <h3>Have A Coupon? <span data-toggle="collapse" data-target="#couponaccordion">Click Here To Enter Your Code</span>
+                      </h3>
+                      <div id="couponaccordion" class="collapse" data-parent="#checkOutAccordion">
+                          <div class="card-body">
+                              <div class="cart-update-option">
+                                  <div class="apply-coupon-wrapper">
+                                      <form action="#" method="post" class=" d-block d-md-flex">
+                                          <input type="text" placeholder="Enter Your Coupon Code"/>
+                                          <button class="btn-add-to-cart">Apply Coupon</button>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Checkout Login Coupon Accordion End -->
+          </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-6 mt-5 mt-lg-0">
+          <div class="order-summary-details">
+              <h2>Your Order Summary</h2>
+              <div class="order-summary-content">
+                  <!-- Order Summary Table -->
+                  <div class="order-summary-table table-responsive text-center">
+                      <table class="table table-bordered">
+                          <thead>
+                          <tr>
+                              <th>Products</th>
+                              <th>Total</th>
+                          </tr>
+                          </thead>
+
+                          <tbody>
+                        
+
+                          {% for each in data %}
+                          <tr>
+                              <td><a href="{%url 'products:pr_details' each.name.id %}">{{each.name}}<strong> × {{each.quantity}}</strong></a></td>
+                              <td>Rs. {{each.net_price}}</td>
+                          </tr>
+                          {% endfor %}
+                          </tbody>
+                          <tfoot>
+                          <tr>
+                              <td>Sub Total</td>
+                              <td><strong>Rs. {{sum}}</strong></td>
+                          </tr>
+
+                          <tr>
+                              <td>Shipping</td>
+                              <td class="d-flex justify-content-center">
+                                  <ul class="shipping-type">
+                                     
+                                      <li>Free Shipping</li>
+                                  </ul>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>Total Amount</td>
+                              <td><strong>Rs. {{sum}}</strong></td>
+                          </tr>
+                          </tfoot>
+                      </table>
+                  </div>
+
+                  <!-- Order Payment Method -->
+                  <div class="order-payment-method">
+                      <div class="single-payment-method show">
+                          <div class="payment-method-name">
+                              <div class="custom-control custom-radio">
+                                  <input type="radio" id="cashon" name="paymentmethod" value="cash"
+                                         class="custom-control-input" checked/>
+                                  <label class="custom-control-label" for="cashon">Cash On Delivery</label>
+                              </div>
+                          </div>
+                          <div class="payment-method-details" data-method="cash">
+                              <p>Pay with cash upon delivery.</p>
+                          </div>
+                      </div>
+
+                   
+
+                
+
+                      <!-- <div class="summary-footer-area">
+                          
+
+                          <a href="#" class="btn-add-to-cart"> Place Order</a>
+                      </div> -->
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      
+          <!-- Checkout Billing Details -->
+          <div class="col-lg-6">
+              <div class="checkout-billing-details-wrap">
+                  <h2>Billing Details</h2>
+                  <div class="billing-form-wrap">
+                    <form method="POST">{% csrf_token %}
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="single-input-item">
+                                      <label for="f_name" class="required">First Name</label>
+                                      <input type="text" name="f_name" placeholder="First Name"/>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                  <div class="single-input-item">
+                                      <label for="l_name" class="required">Last Name</label>
+                                      <input type="text" name="l_name" placeholder="Last Name"/>
+                                  </div>
+                              </div>
+                          </div>
+
+                         
+                       
+
+                          <div class="single-input-item">
+                              <label for="phone">Phone</label>
+                              <input type="number" name="phone" placeholder="Phone"/>
+                          </div>
+                          <div class="single-input-item">
+                            <label for="adress">Adress</label>
+                            <input type="text" name="adress" placeholder="Adress"/>
+                        </div>
+                        <div class="summary-footer-area">
+                        <button class="btn-add-to-cart mt-3 bg-dark text-white" name="cnf_ord">Place Order</button>
+                      </div>
+
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Order Summary Details -->
+       
+      </div>
+      <!--== Checkout Page Content End ==-->
+  </div>
+</div>
+<!--== Page Content Wrapper End ==-->
+
+
+
+
+
+{% endblock %}
+
+

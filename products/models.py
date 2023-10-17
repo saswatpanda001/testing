@@ -94,6 +94,13 @@ class cart_model(models.Model):
         Product_Model, on_delete=models.CASCADE, blank=True, null=True)
     image = models.ImageField(upload_to="cart", default="def_product.jpg")
 
+
+    def save(self,*args,**kwargs):
+        self.image = self.name.image
+        super(cart_model,self).save(*args,**kwargs)
+
+
+
     def __str__(self):
         return str(self.seller)+" "+str(self.name)+" "+str(self.net_price)
 
