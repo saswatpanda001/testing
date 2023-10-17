@@ -2,78 +2,88 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+
+
+<!--== Search Box Area Start ==-->
 <div class="body-popup-modal-area">
-    <span class="modal-close"><img src="/static/assets/img/cancel.png" alt="Close" class="img-fluid"/></span>
-    <div class="modal-container d-flex">
-        <div class="search-box-area">
-            <div class="search-box-form">
-                <form action="#" method="post">
-                    <input type="search" placeholder="type keyword and hit enter"/>
-                    <button class="btn" type="button"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
-        </div>
-    </div>
+  <span class="modal-close"><img src="assets/img/cancel.png" alt="Close" class="img-fluid"/></span>
+  <div class="modal-container d-flex">
+      <div class="search-box-area">
+          <div class="search-box-form">
+              <form action="#" method="post">
+                  <input type="search" placeholder="type keyword and hit enter"/>
+                  <button class="btn" type="button"><i class="fa fa-search"></i></button>
+              </form>
+          </div>
+      </div>
   </div>
-  <!--== Search Box Area End ==-->
-  
-  <!--== Page Title Area Start ==-->
-  <div id="page-title-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <div class="page-title-content">
-                    <ul class="breadcrumb">
-                       <h1>Orders List</h1>
-                       
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
+<!--== Search Box Area End ==-->
+
+<!--== Page Title Area Start ==-->
+<div id="page-title-area">
+  <div class="container">
+      <div class="row">
+          <div class="col-12 text-center">
+              <div class="page-title-content">
+                  <h1>Your Orders</h1>
+                  
+              </div>
+          </div>
+      </div>
   </div>
+</div>
+<!--== Page Title Area End ==-->
+
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper" class="p-9">
+  <div class="container">
+      <!-- Cart Page Content Start -->
+      <div class="row">
+          <div class="col-lg-12">
+              <!-- Cart Table Area -->
+              <div class="cart-table table-responsive">
+                  <table class="table table-bordered">
+                      <thead>
+                      <tr>
+                          
+                          <th class="pro-title">Product</th>
+                          <th class="pro-price">Price</th>
+                          <th class="pro-quantity">Buyer</th>
+                          <th class="pro-quantity">Time</th>
+                          <th class="pro-quantity">Status</th>
+                          
+                          
+                      </tr>
+                      </thead>
+                      <tbody>
 
 
-<div class="flex flex-1 h-full mt-5 pt-5 ">
-   
-    {% if ord_table is None %}
-        <div class="container alert alert-danger mt-5 text-center col-md-6" role="alert">
-            No data to display
-        </div>
-       
-    {% else %}
+                        {% for each in ord_table %}
+                     
+                      <tr>
+                          
+                          <td class="pro-title"><a  href="{% url 'products:ord_details' each.transaction_id %}">{{each.transaction_id}} </a></td>
+                          <td class="pro-price"><span>Rs {{each.net_price}}</span></td>
+                          <td class="pro-price"><span>{{each.costumer.username}}</span></td>
+                          <td class="pro-price"><span>{{each.time}}</span></td>
+                          <td class="pro-price"><span>{{each.status}}</span></td>
+                          
+                        
+                         
+                      </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
 
-        <div class="flex-fill mb-4">
-    <table class="table container">
-        <thead>
-          <tr>
-            <th scope="col">Transaction Id</th>
-            <th scope="col">Salesman</th>
-            <th scope="col">NetPrice</th>
-            <th scope="col">Time</th>
-            <th scope="col">Status</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-            {% for each in ord_table %}
-          <tr>
-            <th scope="row"><a  href="{% url 'products:ord_details' each.transaction_id %}">{{each.transaction_id}}</a></th>
-            <td>{{each.salesman}}</td>
-            <td>{{each.net_price}}</td>
-            <td>{{each.time}}</td>
-            <td>{{each.status}}</td>
-          </tr>
-          {% endfor %}
-         
-        </tbody>
-      </table>
+          
+          </div>
       </div>
 
-
-    {% endif %}
+      
+  </div>
 </div>
-
 
 
 {% endblock %}

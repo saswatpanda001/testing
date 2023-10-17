@@ -246,7 +246,6 @@ def cart_view(request):
             cart_dt.net_price = each[1]*cart_dt.name.price
             cart_dt.save()
             print(cart_dt.net_price,cart_dt.quantity)
-
             
 
 
