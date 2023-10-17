@@ -148,19 +148,23 @@
                                           </div>
                                           <span class="price">Rs. {{each.product.price}}</span>
                                           <p class="products-desc">{{each.product.bio}}</p>
-                                              <div class="d-flex align-items-center">
+                                              <div class="d-flex">
+                                                <div class="mr-2">
                                                 <form  method="POST">{% csrf_token %}
                                                 <button name="cart_button" value={{each.product.id}} class="btn-add-to-cart">Add to Cart</button>
                                                 </form>
+                                                </div>
 
+
+                                                <div class="ml-2"></div>
                                                 <form  method="POST">{% csrf_token %}
                                                     <button name="delete_wish" value={{each.id}} class="btn-add-to-cart">Delete</button>
                                                     </form>
                                                     </div>
+                                                    </div>
 
 
-                                          <a  class="btn btn-add-to-cart btn-whislist">+
-                                              Wishlist</a>
+                                        
                                          
                                       </div>
 
