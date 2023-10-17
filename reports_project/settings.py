@@ -24,7 +24,7 @@ SECRET_KEY = "django-insecure-bhlo$x!k%4rj3lqli(#jc1jt0#tiu(&t6in-+h+g6i6%%fq_oy
 
 
 DEBUG = True
-ALLOWED_HOSTS = ["mycircles.herokuapp.com", "localhost", "0.0.0.0","127.0.0.1","xtraas.com","3.96.222.240"]
+ALLOWED_HOSTS = ["mycircles.herokuapp.com", "localhost", "0.0.0.0","127.0.0.1","xtraas.shop","3.96.222.240"]
 
 
 AUTHENTICATION_BACKENDS = [

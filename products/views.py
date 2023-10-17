@@ -337,7 +337,7 @@ def cart_view(request):
             for each in lii:
                 sale.products.add(each)
 
-            sale.net_price = summ
+            sale.net_price = sum_total
             
             sale.name = request.POST["buyer_name"]
             sale.number = request.POST["buyer_phone"]
